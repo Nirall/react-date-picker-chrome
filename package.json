@@ -29,6 +29,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@types/lodash.debounce": "^4.0.9",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "rollup": "^4.19.1",
@@ -45,7 +46,8 @@
   },
   "dependencies": {
     "bem-cn": "^3.0.1",
-    "dayjs": "^1.11.12"
+    "dayjs": "^1.11.12",
+    "lodash.debounce": "^4.0.8"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
