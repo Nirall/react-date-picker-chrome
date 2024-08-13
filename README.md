@@ -1,6 +1,6 @@
 # React date picker based on dayjs
 
-A date picker with automatic calendar position similar to Chrome's built-in date picker <DatePicker />
+A date picker with time picker similar to Chrome's built-in date picker. The package exports a react component <DatePicker />
 
 ## Install
 npm install @nirall/react-date-picker-chrome
@@ -42,14 +42,23 @@ function App() {
 ```
 
 There are several variables for styling. You can pass them to the "style" property:
+
 --text: the main color of text and other elements such as arrows;
+
 --main-bg: main background color;
+
 --selected-text: text color in selected cells (days, hours, etc.);
+
 --selected-bg: background color of selected cells (days, hours, etc.);
+
 --button: color of buttons (today, delete);
+
 --icon: color for input icons (calendar and arrow);
+
 --border: color for borders;
+
 --year: year cell background color;
+
 --radius: radius for input and calendar, cells have radius equal to --radius / 2;
 
 ```
