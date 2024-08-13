@@ -6,7 +6,7 @@ import throttle from 'lodash.throttle';
 import { TSelectorProps } from './types';
 import './Selector.scss';
 
-const b = block('react-date-picker-dayjs-selector');
+const b = block('react-date-picker-dayjs-chrome-selector');
 
 const Selector = function <TValue = string>({
   items,
