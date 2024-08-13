@@ -1,7 +1,7 @@
 /* eslint-disable func-names */
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import block from 'bem-cn';
-import debounce from 'lodash.debounce';
+import throttle from 'lodash.throttle';
 
 import { TSelectorProps } from './types';
 import './Selector.scss';
@@ -55,7 +55,7 @@ const Selector = function <TValue = string>({
   useEffect(() => {
     const main = mainRef.current;
 
-    const handleListScroll = debounce(() => {
+    const handleListScroll = throttle(() => {
       if (main) {
         const { scrollTop, scrollHeight, clientHeight } = main;
 
@@ -71,7 +71,7 @@ const Selector = function <TValue = string>({
 
         prevScrollTop.current = scrollTop;
       }
-    }, 200);
+    }, 150);
 
     if (main) main.addEventListener('scroll', handleListScroll);
 
