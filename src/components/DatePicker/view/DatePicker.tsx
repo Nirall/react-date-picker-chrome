@@ -20,7 +20,6 @@ const DatePicker = ({
   dateFormat = 'DD.MM.YYYY HH:mm',
   value,
   onChange,
-  color = 'default',
   position,
   children,
   style,
@@ -66,7 +65,7 @@ const DatePicker = ({
   }, [style]);
 
   return (
-    <div className={b({ color, open: values.isOpen, yearsOpen: values.isYearsOpen })} ref={ref}>
+    <div className={b({ open: values.isOpen, yearsOpen: values.isYearsOpen })} ref={ref}>
       {children
         ? <div className={b('children')} onClick={() => handlers.handleOpen()}>{children}</div>
         : <div className={b('input')} onClick={() => handlers.handleOpen()}>

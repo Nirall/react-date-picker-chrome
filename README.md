@@ -64,7 +64,7 @@ There are several variables for styling. You can pass them to the "style" proper
 ```
 import { DatePicker } from '@nirall/react-date-picker-chrome';
 
-let style = {
+const style = {
   '--text': '#fff',
   '--selected-text': '#666',
   '--selected-bg':' #AAA',

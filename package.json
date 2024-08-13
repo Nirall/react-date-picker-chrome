@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A date picker with time picker similar to Chrome's built-in date picker.",
   "type": "module",
   "scripts": {

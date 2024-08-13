@@ -2,7 +2,6 @@ import React from 'react';
 import { style } from '../model/data';
 
 export type TDatePicker = {
-  color?: 'default',
   children?: React.ReactNode,
   dateFormat?: string,
   value: Date | null,
