@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A date picker with time picker similar to Chrome's built-in date picker.",
   "type": "module",
   "scripts": {
@@ -29,7 +29,6 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@types/lodash.throttle": "^4.1.9",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "rollup": "^4.19.1",
@@ -45,9 +44,7 @@
     "react-dom": "^18.3.1"
   },
   "dependencies": {
-    "bem-cn": "^3.0.1",
-    "dayjs": "^1.11.12",
-    "lodash.throttle": "^4.1.1"
+    "dayjs": "^1.11.12"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

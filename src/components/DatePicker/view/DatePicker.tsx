@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import block from 'bem-cn';
 import dayjs from 'dayjs';
 
 import useClickOutside from '../model/useClickOutside';
 import useDatePicker from '../model/useDatePicker';
+import { bemNameGenerator } from '../model/utils';
 import Selector from './Selector';
 
 import { TDatePicker } from './types';
 import './DatePicker.scss';
 
-const b = block('react-date-picker-dayjs-chrome');
+const b = bemNameGenerator('react-date-picker-dayjs-chrome');
 
 /**
  * @param { string } dateFormat - according to dayjs

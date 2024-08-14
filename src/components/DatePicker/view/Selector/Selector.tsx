@@ -1,12 +1,12 @@
 /* eslint-disable func-names */
 import React, { useState, useMemo, useRef, useEffect } from 'react';
-import block from 'bem-cn';
-import throttle from 'lodash.throttle';
+
+import { bemNameGenerator } from '../../model/utils';
 
 import { TSelectorProps } from './types';
 import './Selector.scss';
 
-const b = block('react-date-picker-dayjs-chrome-selector');
+const b = bemNameGenerator('react-date-picker-dayjs-chrome-selector');
 
 const Selector = function <TValue = string>({
   items,
@@ -21,22 +21,22 @@ const Selector = function <TValue = string>({
   const listAboveRef = useRef<HTMLUListElement>(null);
   const listUnderRef = useRef<HTMLUListElement>(null);
   const childrenRef = useRef<HTMLDivElement>(null);
-  const prevScrollTop = useRef(0);
+  const beginRef = useRef<HTMLDivElement>(null);
+  const endRef = useRef<HTMLDivElement>(null);
+  const initialScrollEndedRef = useRef(false);
 
   const [scrollTrigger, setScrollTrigger] = useState<null | Object>(null);
 
   const itemsList = useMemo(
     () =>
       items
-        // .filter(item => !item.active)
         .map(item => {
           const isActive = item.value === activeValue;
           const activeSuffix = isActive ? ` ${className}_active` : '';
 
           return (
-            <>
+            <React.Fragment key={item.name}>
               <li
-                key={item.name}
                 className={`${className}${activeSuffix}`}
                 onClick={() => {
                   onChange(item);
@@ -46,7 +46,7 @@ const Selector = function <TValue = string>({
                 {item.name}
               </li>
               {isActive && <div className={b('children')} ref={childrenRef}>{children}</div>}
-            </>
+            </React.Fragment>
         )
       }),
     [items, activeValue, onChange, className, children, withScrollOnSelect],
@@ -55,28 +55,40 @@ const Selector = function <TValue = string>({
   useEffect(() => {
     const main = mainRef.current;
 
-    const handleListScroll = throttle(() => {
-      if (main) {
-        const { scrollTop, scrollHeight, clientHeight } = main;
+    const handleBeginVisible = () => {
+      if (main && initialScrollEndedRef.current) {
+        const { scrollHeight } = main;
 
-        if (scrollTop + clientHeight > scrollHeight - 2) {
-          main.scrollTo({
-            top: ((listAboveRef.current?.scrollHeight ?? 0) * 2) - clientHeight,
-          });
-        } else if (scrollTop === 0 && scrollTop < prevScrollTop.current) {
-          main.scrollTo({
-            top: scrollHeight - ((listUnderRef.current?.scrollHeight ?? 0) * 2),
-          });
-        }
-
-        prevScrollTop.current = scrollTop;
+        main.scrollTo({
+          top: scrollHeight - ((listUnderRef.current?.scrollHeight ?? 0) * 2),
+        });
       }
-    }, 150);
+    }
 
-    if (main) main.addEventListener('scroll', handleListScroll);
+    const handleEndVisible = () => {
+      if (main && initialScrollEndedRef.current) {
+        const { clientHeight } = main;
+
+        main.scrollTo({
+          top: ((listAboveRef.current?.scrollHeight ?? 0) * 2) - clientHeight,
+        });
+      }
+    }
+
+    const beginObserver = new IntersectionObserver(handleBeginVisible, {
+      threshold: 0,
+    });
+
+    const endObserver = new IntersectionObserver(handleEndVisible, {
+      threshold: 0,
+    });
+  
+    if (beginRef.current) beginObserver.observe(beginRef.current);
+    if (endRef.current) endObserver.observe(endRef.current);
 
     return (() => {
-      if (main) main.removeEventListener('scroll', handleListScroll);
+      beginObserver.disconnect();
+      endObserver.disconnect();
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -99,20 +111,28 @@ const Selector = function <TValue = string>({
           top: scrollTopOffset,
           behavior: scrollTrigger ? 'smooth' : undefined,
         });
+
+        setTimeout(() => {
+          initialScrollEndedRef.current = true;
+        }, 500);
       }
     }, 0);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollTrigger]);
 
+  const withCycleScroll = additionalItemsCount > 0;
+
   return (
     <div className={b()} ref={mainRef}>
+      {withCycleScroll && <div className={b('begin')} ref={beginRef} />}
       <ul className={b('list')} ref={listAboveRef}>
-        {additionalItemsCount ? itemsList.slice(-additionalItemsCount) : null}
+        {withCycleScroll && itemsList.slice(-additionalItemsCount)}
       </ul>
       <ul className={b('list')}>{itemsList}</ul>
       <ul className={b('list')} ref={listUnderRef}>
-        {additionalItemsCount ? itemsList.slice(0, additionalItemsCount) : null}
+        {withCycleScroll && itemsList.slice(0, additionalItemsCount)}
       </ul>
+      {withCycleScroll && <div className={b('end')} ref={endRef} />}
     </div>
   );
 };
