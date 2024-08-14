@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      <DatePicker onChange={v => setDate(v)} value={date} />
+      <DatePicker onChange={setDate} value={date} />
     </div>
   );
 }
@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div className="App">
-      <DatePicker onChange={v => setDate(v)} value={date}>
+      <DatePicker onChange={setDate} value={date}>
         // your input
         {date?.toISOString()}
       </DatePicker>
@@ -81,7 +81,7 @@ function App() {
 
   return (
     <div className="App">
-      <DatePicker onChange={v => setDate(v)} value={date} style={style} />
+      <DatePicker onChange={setDate} value={date} style={style} />
     </div>
   );
 }
@@ -90,7 +90,7 @@ function App() {
 The component can automatically position the calendar field relative to the screen, but you can also specify it directly
 
 ```
-<DatePicker onChange={v => setDate(v)} value={date} position="bottom-right" />
+<DatePicker onChange={setDate} value={date} position="bottom-right" />
 ```
 
 To change the default button names ("today", "delete") there are corresponding properties - "todayWord", "deleteWord".
