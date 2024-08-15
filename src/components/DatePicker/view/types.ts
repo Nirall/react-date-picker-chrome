@@ -10,4 +10,5 @@ export type TDatePicker = {
   style?: Partial<typeof style>,
   todayWord?: string,
   deleteWord?: string,
+  withTime?: boolean,
 }

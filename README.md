@@ -1,12 +1,12 @@
 # React date picker based on dayjs
 
-A date picker with time picker similar to Chrome's built-in date picker. The package exports a react component <DatePicker />
+A date picker with time selection, similar to Chrome's built-in date picker. The package exports a React component.
 
 ## Install
 npm install @nirall/react-date-picker-chrome
 
 ## Usage
-With built-in input design
+With built-in input design.
 
 ```
 import { DatePicker } from '@nirall/react-date-picker-chrome';
@@ -22,7 +22,7 @@ function App() {
 }
 ```
 
-You can provide your own input as a child element
+You can provide your own input as a child element.
 
 ```
 import { DatePicker } from '@nirall/react-date-picker-chrome';
@@ -87,13 +87,18 @@ function App() {
 }
 ```
 
-The component can automatically position the calendar field relative to the screen, but you can also specify it directly
+The component can automatically position the calendar block relative to the screen, but you can also specify this directly.
 
 ```
 <DatePicker onChange={setDate} value={date} position="bottom-right" />
 ```
 
 To change the default button names ("today", "delete") there are corresponding properties - "todayWord", "deleteWord".
+
+By default, the date picker has a time picker. To disable it, set the "withTime" property to false.
+
+By default the date format is "DD.MM.YYYY HH:mm", you can change it to any format provided by dayjs.
+
 
 ## git
 [https://github.com/Nirall/react-date-picker-chrome](https://github.com/Nirall/react-date-picker-chrome)

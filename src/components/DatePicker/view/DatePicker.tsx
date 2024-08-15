@@ -25,6 +25,7 @@ const DatePicker = ({
   style,
   todayWord = 'today',
   deleteWord = 'delete',
+  withTime = true,
 }: TDatePicker) => {
   const { handlers, values } = useDatePicker({ value, onChange, position });
   const { ref } = useClickOutside(() => handlers.handleOpen(false));
@@ -146,7 +147,7 @@ const DatePicker = ({
                 </div>
               </>}
         </div>
-        {values.isOpen && <div className={b('time')}>
+        {values.isOpen && withTime && <div className={b('time')}>
           <Selector
             className={b('time-element')}
             items={values.hours}
