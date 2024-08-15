@@ -3,7 +3,7 @@ import localeData from 'dayjs/plugin/localeData';
 
 dayjs.extend(localeData);
 
-const getYears = ({ startYear = 1990, yearsCount = 60 }) =>
+const getYears = ({ startYear = 1900, yearsCount = 200 }) =>
   new Array(yearsCount).fill(startYear).map((v, i) => ({
     value: v + i,
     name: v + i,

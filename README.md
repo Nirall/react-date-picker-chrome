@@ -99,6 +99,19 @@ By default, the date picker has a time picker. To disable it, set the "withTime"
 
 By default the date format is "DD.MM.YYYY HH:mm", you can change it to any format provided by dayjs.
 
+To set range of years there are two properties - "startYear", "yearsCount".
+
+```
+<DatePicker
+  onChange={setDate}
+  value={date}
+  withTime={false}
+  dateFormat="DD.MM.YYYY"
+  startYear={1990}
+  yearsCount={60}
+/>
+```
+
 
 ## git
 [https://github.com/Nirall/react-date-picker-chrome](https://github.com/Nirall/react-date-picker-chrome)

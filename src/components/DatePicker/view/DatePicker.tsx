@@ -26,8 +26,10 @@ const DatePicker = ({
   todayWord = 'today',
   deleteWord = 'delete',
   withTime = true,
+  startYear,
+  yearsCount,
 }: TDatePicker) => {
-  const { handlers, values } = useDatePicker({ value, onChange, position });
+  const { handlers, values } = useDatePicker({ value, onChange, position, startYear, yearsCount });
   const { ref } = useClickOutside(() => handlers.handleOpen(false));
 
   const weekItems = values.weekNames.map(v =>

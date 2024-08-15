@@ -11,4 +11,6 @@ export type TDatePicker = {
   todayWord?: string,
   deleteWord?: string,
   withTime?: boolean,
+  startYear?: number,
+  yearsCount?: number,
 }
