@@ -89,6 +89,7 @@ const DatePicker = ({
             </div>
           </div>}
 
+      {values.isOpen &&
       <div className={b('calendar-wrapper', { position: position ?? values.dynamicPosition })} ref={values.calendarRef}>
         <div className={b('calendar')}>
           <div className={b('calendar-header')}>
@@ -163,7 +164,7 @@ const DatePicker = ({
             onChange={handlers.handleMinuteSelect}
           />
         </div>}
-      </div>
+      </div>}
     </div>
   );
 };
