@@ -79,6 +79,7 @@ const useDatePicker = ({ value, onChange, position, startYear, yearsCount }: TUs
 
   const handleMonthSelect = (item: typeof months[0]) => {
     setBufferValue(ps => ps.set('month', item.value));
+    setIsYearsOpen(false);
   }
 
   const handleDaySelect = (item: typeof days[0]) => {
